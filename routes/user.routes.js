@@ -16,9 +16,10 @@ router.get('/', auth,
     }
   })
 
-router.post('/add',
+router.post('/add', auth,
   async (req, res) => {
     try {
+      console.log('wwwwwwwwwww', req.body)
       const { name, username, email } = req.body
       const newUser = new Users({ //Сделать деструктуризацию
         name,
@@ -30,14 +31,14 @@ router.post('/add',
       const users = await Users.find()
 
       res.json(users)
-      res.json('User added!')
+      // res.json('User added!')
     }
     catch (err) {
       res.status(400).json('Error: ' + err)
     }
   })
 
-router.delete('/:id',
+router.delete('/:id', auth,
   async (req, res) => {
     try {
       await Users.findByIdAndDelete(req.params.id)
