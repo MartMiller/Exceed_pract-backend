@@ -1,5 +1,0 @@
-{
-  "port": 5000,
-  "mongoUri": "mongodb+srv://Vladislav:123456zzv@cluster0-zkzbh.gcp.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "randomWord"
-}
