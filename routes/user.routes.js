@@ -4,12 +4,12 @@ const Users = require('../models/Users')
 const auth = require('./jwt.routes')
 
 // homePage получение данных
-router.get('/', auth,
+router.get('/get', auth,
   async (req, res) => {
     try {
       const users = await Users.find()
-      console.log(users)
       res.json(users)
+      console.log(users)
     }
     catch (err) {
       res.status(400).json('Error: ' + err)
@@ -19,9 +19,8 @@ router.get('/', auth,
 router.post('/add', auth,
   async (req, res) => {
     try {
-      console.log('wwwwwwwwwww', req.body)
       const { name, username, email } = req.body
-      const newUser = new Users({ //Сделать деструктуризацию
+      const newUser = new Users({
         name,
         username,
         email,

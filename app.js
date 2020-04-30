@@ -1,7 +1,7 @@
 const express = require('express')
 // const config = require('config')
 const mongoose = require('mongoose')
-const cors = require('cors');
+// const cors = require('cors');
 const dotenv = require('dotenv');
 
 dotenv.config()
@@ -10,7 +10,7 @@ const app = express()
 
 // Middleware
 app.use(express.json({ extended: true }))
-app.use(cors());
+// app.use(cors());
 
 app.use('/', require('./routes/user.routes'))
 app.use('/auth', require('./routes/auth.routes'))
