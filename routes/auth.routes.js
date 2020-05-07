@@ -54,6 +54,7 @@ router.post('/login',
   async (req, res) => {
     try {
       const errors = validationResult(req)
+      console.log(req.body)
 
       if (!errors.isEmpty()) {
         return res.status(400).json({
@@ -78,16 +79,24 @@ router.post('/login',
 
       const token = jwt.sign(
         { userId: user._id },
-        process.env.JWTSECRET,
+        process.env.JWT_SECRET,
         { expiresIn: '1h' }
       )
-      res.header('authToken', token).send(token)
+
+      const authData = {
+        token,
+        userId: user._id,
+        email: user.email
+      }
+
+      res.header('authToken', token).send(authData)
+
 
       // res.json({ token, userId: user._id });
 
     }
     catch (err) {
-      res.status(400).json('Error: ' + err)
+      res.status(500).json({ message: 'Something went wrong, try again' })
     }
   })
 
